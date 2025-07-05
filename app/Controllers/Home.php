@@ -2,11 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Database\Migrations\Product;
-
 use App\Models\ProductModel;
-use App\Models\transactionModel;
-use App\Models\transactionDetailModel; 
+use App\Models\TransactionModel;
+use App\Models\TransactionDetailModel;
 
 class Home extends BaseController
 {
@@ -14,7 +12,8 @@ class Home extends BaseController
     protected $transaction;
     protected $transaction_detail;
 
-    public function __construct() {
+    function __construct()
+    {
         helper('form');
         helper('number');
         $this->product = new ProductModel();
@@ -24,34 +23,40 @@ class Home extends BaseController
 
     public function index()
     {
-        $Product = $this->product->findAll();
-        $data['product'] = $Product;
-        
-        return view('v_home',$data);
+        $product = $this->product->findAll();
+        $data['product'] = $product;
+
+        return view('v_home', $data);
     }
 
     public function profile()
-{
-    $username = session()->get('username');
-    $data['username'] = $username;
+    {
+        $username = session()->get('username');
+        $data['username'] = $username;
 
-    $buy = $this->transaction->where('username', $username)->findAll();
-    $data['buy'] = $buy;
+        $buy = $this->transaction->where('username', $username)->findAll();
+        $data['buy'] = $buy;
 
-    $product = [];
+        $product = [];
 
-    if (!empty($buy)) {
-        foreach ($buy as $item) {
-            $detail = $this->transaction_detail->select('transaction_detail.*, product.nama, product.harga, product.foto')->join('product', 'transaction_detail.product_id=product.id')->where('transaction_id', $item['id'])->findAll();
+        if (!empty($buy)) {
+            foreach ($buy as $item) {
+                $detail = $this->transaction_detail->select('transaction_detail.*, product.nama, product.harga, product.foto')->join('product', 'transaction_detail.product_id=product.id')->where('transaction_id', $item['id'])->findAll();
 
-            if (!empty($detail)) {
-                $product[$item['id']] = $detail;
+                if (!empty($detail)) {
+                    $product[$item['id']] = $detail;
+                }
             }
         }
+
+        $data['product'] = $product;
+
+        return view('v_profile', $data);
     }
 
-    $data['product'] = $product;
+    public function contact()
+    {
+        return view('v_contact');
+    }
 
-    return view('v_profile', $data);
-}
 }
