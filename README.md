@@ -56,7 +56,7 @@ projectci/
 ### 📦 1. Clone & Masuk ke Proyek
 
 ```bash
-git clone [URL]
+git clone https://github.com/ArvinFarrelP/belajar-ci-tugas.git
 cd projectci
 ```
 
