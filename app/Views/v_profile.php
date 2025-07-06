@@ -11,6 +11,7 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                 <th scope="col">ID Pembelian</th>
                 <th scope="col">Waktu Pembelian</th>
                 <th scope="col">Total Bayar</th>
+                <th scope="col">Ongkir</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Status</th>
                 <th scope="col"></th>
@@ -26,6 +27,7 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                 <td><?php echo $item['id'] ?></td>
                 <td><?php echo $item['created_at'] ?></td>
                 <td><?php echo number_to_currency($item['total_harga'], 'IDR') ?></td>
+                <td><?php echo number_to_currency($item['ongkir'], 'IDR') ?></td>
                 <td><?php echo $item['alamat'] ?></td>
                 <td><?php echo ($item['status'] == "1") ? "Sudah Selesai" : "Belum Selesai" ?></td>
                 <td>

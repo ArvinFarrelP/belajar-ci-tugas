@@ -16,9 +16,10 @@
                 <span>Keranjang</span>
             </a>
         </li><!-- End Keranjang Nav -->
+
         <?php
-        if (session()->get('role') == 'admin') {
-        ?>
+            if (session()->get('role') == 'admin') {
+            ?>
         <li class="nav-item">
             <a class="nav-link <?php echo (uri_string() == 'produk') ? "" : "collapsed" ?>" href="produk">
                 <i class="bi bi-receipt"></i>
@@ -26,7 +27,20 @@
             </a>
         </li><!-- End Produk Nav -->
         <?php
-        }
+            }
+        ?>
+
+        <?php
+            if (session()->get('role') == 'admin') {
+            ?>
+        <li class="nav-item">
+            <a class="nav-link <?php echo (uri_string() == 'diskon') ? "" : "collapsed" ?>" href="diskon">
+                <i class="bi bi-receipt"></i>
+                <span>Diskon</span>
+            </a>
+        </li><!-- End Produk Nav -->
+        <?php
+            }
         ?>
 
         <li class="nav-item">
@@ -34,23 +48,27 @@
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
-        </li>
-
-        <!-- End Profile Nav -->
+        </li><!-- End Profile Nav -->
 
         <?php
-        if (session()->get('role') == 'admin') {
-        ?>
+            if (session()->get('role') == 'admin') {
+            ?>
         <li class="nav-item">
             <a class="nav-link <?php echo (uri_string() == 'kategori') ? "" : "collapsed" ?>" href="kategori">
-                <i class="bi bi-receipt"></i>
+                <i class="bi bi-tag-fill"></i>
                 <span>Kategori Produk</span>
             </a>
-        </li><!-- End Category Nav -->
+        </li><!-- End Kategori Nav -->
         <?php
-        }
+            }
         ?>
 
+        <li class="nav-item">
+            <a class="nav-link <?php echo (uri_string() == 'contact') ? "" : "collapsed" ?>" href="contact">
+                <i class="bi bi-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </li><!-- End contact Nav -->
     </ul>
 
 </aside><!-- End Sidebar-->
